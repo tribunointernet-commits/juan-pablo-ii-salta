@@ -1,0 +1,19 @@
+EXTRAER AUTOMÁTICAMENTE LAS 6 FOTOS DE EL TRIBUNO
+
+Contenido:
+- index.html: diseño actual del especial, con el autoajuste de altura.
+- juan_pablo_ii_ilustracion.png: arte del encabezado.
+- scripts/extraer_fotos.py: extractor de imágenes destacadas desde las seis URL.
+- requirements.txt: dependencias.
+- .github/workflows/cargar_fotos.yml: proceso manual de GitHub Actions.
+
+Pasos:
+1. Copiá estos archivos/carpetas al repositorio GitHub Pages juan-pablo-ii-salta.
+2. Hacé commit en la rama principal.
+3. Entrá a Actions > Obtener fotos del archivo papal > Run workflow.
+4. El proceso intentará identificar la foto de cada artículo desde og:image, JSON-LD o su contenido y descargará archivos imagenes/nota_1.webp a nota_6.webp.
+5. Si encuentra fotos válidas, reemplaza sus placeholders en index.html, hace commit y GitHub Pages vuelve a publicar el bloque.
+6. Revisá visualmente que las fotos correspondan a cada nota. Los metadatos de un sitio pueden variar.
+
+No se han descargado las seis fotos en este entorno; la ejecución remota depende de que el sitio permita leerlas desde GitHub Actions.
+Si alguna foto no se obtiene, queda el placeholder correspondiente y el flujo marca extracción parcial. No se inventan imágenes.
