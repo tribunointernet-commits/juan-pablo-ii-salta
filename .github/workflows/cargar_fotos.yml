@@ -1,1 +1,33 @@
+name: Obtener fotos del archivo papal
+
+"on":
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  fotos:
+    name: Extraer fotografías
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Extraer fotos de las seis notas
+        run: python scripts/extraer_fotos.py
+      - name: Guardar imágenes y HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html imagenes/
+          if ! git diff --cached --quiet; then
+            git commit -m "Incorporar fotografías del especial papal"
+            git push
+          fi
 
